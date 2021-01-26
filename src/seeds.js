@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Restaurants = require("./models/restaurant");
+var Users = require("./models/user");
 
 var data = [
   {
@@ -94,6 +95,36 @@ var data = [
   },
 ];
 
+var userData = [
+	{
+		name: "John Smith",
+		email: "john@gmail.com",
+		username: "johnsmith",
+		password: "1234",
+		dob: "09/12/1985",
+		mobile: "648564656",
+		level: "user"	
+	},
+	{
+		name: "Faizan Shah",
+		email: "faizan@gmail.com",
+		username: "faizanshah",
+		password: "1234567789",
+		dob: "26/01/1987",
+		mobile: "6732476328",
+		level: "cashier"	
+	},
+	{
+		name: "Aida Bugg",
+		email: "aida@gmail.com",
+		username: "bugg",
+		password: "99999999",
+		dob: "1/1/2001",
+		mobile: "555555555",
+		level: "superadmin"	
+	},
+];
+
 function seedDB() {
   // Remove all Restaurants
   Restaurants.deleteMany({}, function (err) {
@@ -115,4 +146,29 @@ function seedDB() {
   });
 }
 
-module.exports = seedDB;
+function seedUserstoDB() {
+  // Remove all Users
+  Users.deleteMany({}, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("removed Users!");
+      // add a few Users
+      userData.forEach(function (seed) {
+        Users.create(seed, function (err, user) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("added a User!");
+          }
+        });
+      });
+    }
+  });
+
+}
+
+module.exports = {
+	seedDB,
+	seedUserstoDB 
+};

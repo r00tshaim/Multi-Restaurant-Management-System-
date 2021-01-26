@@ -2,10 +2,12 @@ var express = require("express");
 var app = express();
 var mongoose = require("mongoose");
 var Restaurants = require('./models/restaurant');
-var seedDB = require("./seeds");
+var Users = require('./models/user');
+var {seedDB, seedUserstoDB} = require("./seeds");
 var port = 3000;
 
 seedDB();
+seedUserstoDB();
 
 mongoose.connect("mongodb://localhost/multi_rms", {
     useNewUrlParser: true
