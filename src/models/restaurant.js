@@ -1,4 +1,3 @@
-const { Menu } = require("@material-ui/core");
 var mongoose = require("mongoose");
 
 // SCHEMA SETUP
