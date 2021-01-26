@@ -2,9 +2,10 @@
   "name": "multi-restaurant-management-system",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/r00tshaim/multi-restaurant-management-system#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.11.13"
+    "mongoose": "^5.11.13",
+    "nodemon": "^2.0.7"
   }
 }
