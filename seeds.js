@@ -1,0 +1,52 @@
+var mongoose = require('mongoose');
+var Restaurants = require('./models/restaurant');
+
+var data = [{
+	name: "Cloud Cafe",
+	email: "cafe@cloud.com",
+	logo: "https://bcassetcdn.com/public/blog/wp-content/uploads/2019/07/18094833/the-red-cafe.png",
+	address: "SG Highway, Ahmedabad",
+	openingTime:  "6:00PM",
+	closingTime: "11:00PM",
+	takingOrders: true,
+	
+}, {
+    name: "Hotel Royal",
+	email: "royal@hotel.com",
+	logo: "https://bcassetcdn.com/public/blog/wp-content/uploads/2019/07/18094833/the-red-cafe.png",
+	address: "RTO, HMT",
+	openingTime:  "6:00AM",
+	closingTime: "11:00PM",
+	takingOrders: true,
+}, {
+   name: "The House Cafe",
+	email: "house@cafe.com",
+	logo: "https://bcassetcdn.com/public/blog/wp-content/uploads/2019/07/18094833/the-red-cafe.png",
+	address: "Mahavinagar, HMT",
+	openingTime:  "6:00PM",
+	closingTime: "11:00PM",
+	takingOrders: true,
+}];
+
+function seedDB() {
+    // Remove all Restaurants
+    Restaurants.deleteMany({}, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("removed Restaurants!");
+            // add a few Restaurants
+            data.forEach(function(seed) {
+                Restaurants.create(seed, function(err, campground) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log("added a Restaurants!");
+                    }
+                });
+            });
+        }
+    });
+};
+
+module.exports = seedDB;
