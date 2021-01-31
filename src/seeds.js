@@ -97,33 +97,33 @@ var data = [
 ];
 
 var userData = [
-	{
-		name: "John Smith",
-		email: "john@gmail.com",
-		username: "johnsmith",
-		password: "1234",
-		dob: "09/12/1985",
-		mobile: "648564656",
-		level: "user"	
-	},
-	{
-		name: "Faizan Shah",
-		email: "faizan@gmail.com",
-		username: "faizanshah",
-		password: "1234567789",
-		dob: "26/01/1987",
-		mobile: "6732476328",
-		level: "cashier"	
-	},
-	{
-		name: "Aida Bugg",
-		email: "aida@gmail.com",
-		username: "bugg",
-		password: "99999999",
-		dob: "1/1/2001",
-		mobile: "555555555",
-		level: "superadmin"	
-	},
+  {
+    name: "John Smith",
+    email: "john@gmail.com",
+    username: "johnsmith",
+    password: "1234",
+    dob: "09/12/1985",
+    mobile: "648564656",
+    level: "user",
+  },
+  {
+    name: "Faizan Shah",
+    email: "faizan@gmail.com",
+    username: "faizanshah",
+    password: "1234567789",
+    dob: "26/01/1987",
+    mobile: "6732476328",
+    level: "cashier",
+  },
+  {
+    name: "Aida Bugg",
+    email: "aida@gmail.com",
+    username: "bugg",
+    password: "99999999",
+    dob: "1/1/2001",
+    mobile: "555555555",
+    level: "superadmin",
+  },
 ];
 
 function seedDB() {
@@ -166,10 +166,29 @@ function seedUserstoDB() {
       });
     }
   });
-
 }
 
+const seedOrdersToDB = async () => {
+  const restaurants = await Restaurants.find({});
+  const users = await Users.find({});
+  // console.log("Restaurent ====> ", restaurants);
+
+  const ordersPromise = restaurants.map(async (restaurant) => {
+    return Orders.create({
+      restaurantId: restaurant._id,
+      userId: users[0]._id,
+      createdAt: "31-12-2021",
+      status: "Cooking",
+      tableNo: 22,
+      quantity: 2,
+    });
+  });
+  const savedOrders = await Promise.all(ordersPromise);
+  console.log("Saved Orders ====> ", savedOrders);
+};
+
 module.exports = {
-	seedDB,
-	seedUserstoDB 
+  seedDB,
+  seedUserstoDB,
+  seedOrdersToDB,
 };
