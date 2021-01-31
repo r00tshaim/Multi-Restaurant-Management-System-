@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Restaurants = require("./models/restaurant");
 var Users = require("./models/user");
+var Orders = require("./models/order");
 
 var data = [
   {
